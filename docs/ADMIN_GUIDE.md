@@ -35,6 +35,14 @@ reveal-date: "2024-12-20T00:00:00"
 4. **Encourage gifting** — players can submit items or currency after the reveal date but before redemption starts.
 5. **Redemption** — during the redemption window, `/kc redeem` moves stored items into inventories and deposits any currency gifts via Vault.
 
+## Quick Functionality Checklist
+Use this smoke test to verify every core feature before opening your event:
+- ✅ **Join guardrails** — Run `/kc join` inside and outside the redemption window to confirm that joining is blocked once redemption starts.
+- ✅ **Recipient assignment** — With at least two players joined, use `/kc reveal` to ensure pairings are generated and revealed; expect a helpful error if only one player is enrolled.
+- ✅ **Item submissions** — After the reveal date, submit an item in-hand with `/kc submit` and confirm the item is removed from the sender's hand and stored in `gifts.yml` under `gifts.<recipientUUID>`.
+- ✅ **Currency submissions** — With Vault installed and funds available, send money using `/kc submit currency <amount>` and verify the balance decreases immediately.
+- ✅ **Redemption window enforcement** — Attempt `/kc redeem` before, during, and after the redemption window to see the command only succeed between `redemption-start` and `redemption-end` while preserving inventory space checks.
+
 ## Troubleshooting
 - **Assignments missing:** Ensure at least two participants exist; the plugin logs an error and skips assignment otherwise.
 - **Economy unavailable:** If Vault or an economy provider is missing, currency gifting and redemption are blocked; players receive guidance to contact staff.
