@@ -6,6 +6,13 @@ KringleCrate is a Minecraft plugin designed to enable a Secret Santa gift exchan
 
 ---
 
+## Documentation
+
+- [Player Guide](docs/USER_GUIDE.md) — everything participants need to know about joining, gifting, and redeeming.
+- [Administrator Guide](docs/ADMIN_GUIDE.md) — setup steps, permissions, config, data storage, and operations.
+
+---
+
 ## Features
 
 1. **Opt-in System**: Players can opt into the Secret Santa event using a command.
