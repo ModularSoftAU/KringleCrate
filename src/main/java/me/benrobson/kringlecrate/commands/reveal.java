@@ -94,6 +94,11 @@ public class reveal implements CommandExecutor {
                 return;
             }
 
+            plugin.getGiftConfigManager()
+                    .getConfig()
+                    .set("revealed." + player.getUniqueId().toString(), true);
+            plugin.getGiftConfigManager().saveConfigFile();
+
             // Fetch the recipient's name
             UUID recipientId = UUID.fromString(recipientUUID);
             OfflinePlayer recipientPlayer = Bukkit.getOfflinePlayer(recipientId);
@@ -114,6 +119,16 @@ public class reveal implements CommandExecutor {
             if (!participants.contains(player.getUniqueId().toString())) {
                 Bukkit.getScheduler().runTask(plugin, () ->
                         player.sendMessage(ChatColor.RED + "You are not part of the Secret Santa event. Use /kc join.")
+                );
+                return;
+            }
+
+            boolean hasRevealed = plugin.getGiftConfigManager()
+                    .getConfig()
+                    .getBoolean("revealed." + player.getUniqueId().toString(), false);
+            if (!hasRevealed) {
+                Bukkit.getScheduler().runTask(plugin, () ->
+                        player.sendMessage(ChatColor.RED + "You must reveal your recipient before viewing their wishlist.")
                 );
                 return;
             }
