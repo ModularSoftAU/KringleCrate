@@ -35,6 +35,10 @@ public class CommandCompleteManager implements TabCompleter {
             return filter(Arrays.asList("view", "add", "remove"), args[1]);
         }
 
+        if (args.length == 2 && args[0].equalsIgnoreCase("reveal")) {
+            return filter(List.of("wishlist"), args[1]);
+        }
+
         if (args.length == 3 && args[0].equalsIgnoreCase("wishlist") && args[1].equalsIgnoreCase("remove")
                 && sender instanceof Player player) {
             List<String> wishlist = plugin.getWishlistManager().getWishlist(player.getUniqueId());
