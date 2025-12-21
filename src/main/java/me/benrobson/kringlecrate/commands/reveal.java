@@ -94,11 +94,6 @@ public class reveal implements CommandExecutor {
                 return;
             }
 
-            plugin.getGiftConfigManager()
-                    .getConfig()
-                    .set("revealed." + player.getUniqueId().toString(), true);
-            plugin.getGiftConfigManager().saveConfigFile();
-
             // Fetch the recipient's name
             UUID recipientId = UUID.fromString(recipientUUID);
             OfflinePlayer recipientPlayer = Bukkit.getOfflinePlayer(recipientId);
@@ -123,19 +118,7 @@ public class reveal implements CommandExecutor {
                 return;
             }
 
-            boolean hasRevealed = plugin.getGiftConfigManager()
-                    .getConfig()
-                    .getBoolean("revealed." + player.getUniqueId().toString(), false);
-            if (!hasRevealed) {
-                Bukkit.getScheduler().runTask(plugin, () ->
-                        player.sendMessage(ChatColor.RED + "You must reveal your recipient before viewing their wishlist.")
-                );
-                return;
-            }
-
-            String recipientUUID = plugin.getGiftConfigManager()
-                    .getConfig()
-                    .getString("assignments." + player.getUniqueId().toString());
+            String recipientUUID = participantManager.getAssignedPlayer(player.getUniqueId().toString());
 
             if (recipientUUID == null) {
                 Bukkit.getScheduler().runTask(plugin, () ->
