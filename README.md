@@ -22,7 +22,14 @@ KringleCrate is a Minecraft plugin designed to enable a Secret Santa gift exchan
 redemption-start: "2024-12-25T00:00:00"
 redemption-end: "2025-01-01T23:59:59"
 reveal-date: "2024-12-20T00:00:00"
+event-timezone: "Australia/Sydney"
 ```
+
+**Timezone support**
+
+All event dates (reveal, redemption start/end, and the join/submit/redeem windows derived from them) are interpreted
+in the configured `event-timezone`. If the field is missing or invalid, KringleCrate defaults to
+`Australia/Sydney`.
 
 ## Commands
 
